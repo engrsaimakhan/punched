@@ -1,4 +1,6 @@
 ! program to take input for Punch
+PRINT *, "*********Please enter the value below, once all the values are entered, data is going to saved to PUNCHED.DAT file*********"
+PRINT *, "  "
 PRINT *, "Enter value for Clear Span Between Girders (e.g., 1670.000):"
 READ(*, *) C
 PRINT *, "Enter value for Diameter of Equivalent Circle for Load (e.g., 646.000):"
