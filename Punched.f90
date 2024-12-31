@@ -220,6 +220,13 @@
       IF(ICOUNT.GT.1) WRITE(80,*)'*******  Punch Load-Yield Strain in Strap  *******'
       WRITE(6,1000) DELTA,ASI,Y,R4,W,ALPHA,P,EPS,PFAIL,STRN,AREA,SK
       IF(ICOUNT.GT.1) WRITE(6,*)'*******  Punch Load-Yield Strain in Strap  *******'
+      IF(ICOUNT.GT.1) WRITE(6,*)''
+      IF(ICOUNT.GT.1) WRITE(6,*)''
+      IF(ICOUNT.GT.1) WRITE(6,*)'*******  These results are also written in PUNCHED.RES file  *******'
+      IF(ICOUNT.GT.1) WRITE(6,*)''
+      IF(ICOUNT.GT.1) WRITE(6,*)''
+      IF(ICOUNT.GT.1) WRITE(6,*)'PRESS ANY KEY TO EXIT'
+      IF(ICOUNT.GT.1) READ(*,*)
       IF(ICOUNT.GT.1) STOP
  1000 FORMAT(1X,F5.2,1X,F5.2,1X,F5.2,2F8.0,F8.2,1X,F8.0,1X,F8.5,2(1X,F8.6),2(1X,F8.2),1X,F8.5,1X,F8.5)
       DELTAP=DELTA

@@ -1,31 +1,31 @@
 ! program to take input for Punch
 PRINT *, "*********Please enter the value below, once all the values are entered, data is going to saved to PUNCHED.DAT file*********"
 PRINT *, "  "
-PRINT *, "Enter value for Clear Span Between Girders (e.g., 1670.000):"
+PRINT *, "Enter value for Clear Span Between Girders"
 READ(*, *) C
-PRINT *, "Enter value for Diameter of Equivalent Circle for Load (e.g., 646.000):"
+PRINT *, "Enter value for Diameter of Equivalent Circle for Load"
 READ(*, *) B
-PRINT *, "Enter value for Maximum Compressive Stress of Concrete (e.g., 25.000):"
+PRINT *, "Enter value for Maximum Compressive Stress of Concrete"
 READ(*, *) FPC
-PRINT *, "Enter value for Strap to Load Spacing (e.g., 0.000):"
+PRINT *, "Enter value for Strap to Load Spacing"
 READ(*, *) SL
-PRINT *, "Enter value for Depth Of Slab (e.g., 175.000):"
+PRINT *, "Enter value for Depth Of Slab"
 READ(*, *) D
-PRINT *, "Enter value for Beta to Define Rectangular Stress Block (e.g., 0.850000):"
+PRINT *, "Enter value for Beta to Define Rectangular Stress Block"
 READ(*, *) B1
-PRINT *, "Enter value for Concrete Constant used for confinement (e.g., 10.000):"
+PRINT *, "Enter value for Concrete Constant used for confinement"
 READ(*, *) CK
-PRINT *, "Enter value for Area of Load Patch (e.g., 216550.000):"
+PRINT *, "Enter value for Area of Load Patch"
 READ(*, *) A
-PRINT *, "Enter value for Bar Spacing (e.g., 0.300E+03):"
+PRINT *, "Enter value for Bar Spacing"
 READ(*, *) BS
-PRINT *, "Enter value for Equivalent Bar Diameter (e.g., 24):"
+PRINT *, "Enter value for Equivalent Bar Diameter"
 READ(*, *) BDIAEQ
-PRINT *, "Enter value for STRESS Level Increment (e.g., 50.0):"
+PRINT *, "Enter value for STRESS Level Increment"
 READ(*, *) STLVLINC
-PRINT *, "Enter value for Modulus of Elascity (e.g., 200000.000):"
+PRINT *, "Enter value for Modulus of Elasticity"
 READ(*, *) E
-PRINT *, "Enter value for Yield strain (e.g., 0.002000):"
+PRINT *, "Enter value for Yield Strain"
 READ(*, *) SNY
 PRINT *, "Enter value for Unit of Stress (0-American, 1-Metric):"
 READ(*, *) IU
@@ -37,6 +37,7 @@ WRITE(80,3)E,SNY
 WRITE(80,4)IU
 PRINT*,' Input File is saved successfully!'
 PRINT*,'' 
+READ(*,*)
 
 1 FORMAT(1X,F10.3,1X,F10.3,1X,F10.3,1X,F8.1)
 2 FORMAT(1X,F10.3,1X,F10.6,1X,F10.3,1X,F12.3,1X,E10.3,1X,F3.0,1X,F3.0)
