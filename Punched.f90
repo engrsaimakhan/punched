@@ -2,13 +2,15 @@
 !  PROGRAM TO CALCULATE PUNCH SHEAR AND SNAP-THROUGH LOADS FOR EMPERICAL DESIFG REINFORCED CONCRETE BRIDGE DECKS
 !
 !     `
+!     REAL(8)::C,B,FPC,SL,D,B1,CK,A,BS,BDIAEQ,STLVLINC,E,SNY
+!     INTEGER::IU
       DIMENSION AB(10),DIA(10),STLVL(10)
       WRITE(6,*) 'START CALCULATION'
       OPEN(70,FILE='PUNCHED.DAT')
-      OPEN(80,FILE='PUNCHED.RES')
-      OPEN(90,FILE='PUNCHED.PLT')
       WRITE(6,*) 'READING DATA'
       READ(70,*) C,B,FPC,SL,D,B1,CK,A,BS,BDIAEQ,STLVLINC,E,SNY,IU
+      OPEN(80,FILE='PUNCHED.RES')
+      OPEN(90,FILE='PUNCHED.PLT')
       DIA(1)=BDIAEQ
       write(6,*) C,B,FPC,SL,D,B1,CK,A,BS,BDIAEQ,STLVLINC,E,SNY,IU
        DIA(1)=BDIAEQ
@@ -62,6 +64,27 @@
       
       IF(IU.EQ.0) WRITE(80,*) 'UNITS ENGLISH KIPS, INCHES, SECONDS'
       IF(IU.EQ.1) WRITE(80,*) 'UNITS METRIC  KN, MM, SECOND'
+      IF(IU.EQ.0) WRITE(6,*) 'UNITS ENGLISH KIPS, INCHES, SECONDS'
+      IF(IU.EQ.1) WRITE(6,*) 'UNITS METRIC  KN, MM, SECOND'
+      WRITE(6,*) 'Clear Span Between Girders=',C
+      WRITE(6,*) 'Diameter of Equivalent Circle for Load=',B
+      WRITE(6,*) 'Maximum Compressive Stress of Concrete=',FPC
+      WRITE(6,*) 'Strap to Load Spacing=',SL
+      WRITE(6,*) 'Depth Of Slab=',D
+      WRITE(6,*) 'Beta to Define Rectangular Stress Block=',B1
+      WRITE(6,*) 'Concrete Constant used for confinement=',CK
+      WRITE(6,*) 'AREA of Load Patch=',A
+      WRITE(6,*) 'Bar Spacing=',BS
+      WRITE(6,*) 'Equivalent Bar Diameter=',BDIAEQ
+      WRITE(6,*) 'STRESS Level Increment=',STLVLINC
+      WRITE(6,*) 'Modulus of Elascity=',E
+      WRITE(6,*) 'Yield strain=',SNY
+      WRITE(6,*) 'STLVL              EDIA   '
+      
+      
+      
+      IF(IU.EQ.0) WRITE(6,*) 'UNITS ENGLISH KIPS, INCHES, SECONDS'
+      IF(IU.EQ.1) WRITE(6,*) 'UNITS METRIC  KN, MM, SECOND'
       WRITE(6,*) 'Clear Span Between Girders=',C
       WRITE(6,*) 'Diameter of Equivalent Circle for Load=',B
       WRITE(6,*) 'Maximum Compressive Stress of Concrete=',FPC
@@ -79,10 +102,13 @@
       
       Do 104 I=1,10
       WRITE(80,*) STLVL(I),DIA(I)
+      WRITE(6,*) STLVL(I),DIA(I)
   104 END DO
       WRITE(80,*) ' DELTA   ASI     Y      R4       W   ALPHA        P     1   EPS    PFAIL     STRN   AB        SK'
+      WRITE(6,*) ' DELTA   ASI     Y      R4       W   ALPHA        P     1   EPS    PFAIL     STRN   AB        SK'
       WRITE(90,1000) DELTA,ASI,Y,R4,W,ALPHA,P,EPS,PFAIL,STRN,AB,SK
 !     WRITE(80,1000) DELTA,ASI,Y,R4,W,ALPHA,P,EPS,PFAIL,STRN,AB,SK,
+!     WRITE(6,1000) DELTA,ASI,Y,R4,W,ALPHA,P,EPS,PFAIL,STRN,AB,SK,
       IPFAIL=0
       DELTA=0.
       Y=D/100.
@@ -94,6 +120,7 @@
     2 CONTINUE
       FACT0=LOG(.5*C/(.5*B+Y))
       IF(FACT0.LE.0) WRITE(80,*) 'FACT0.LT.0 PROGRAM STOPPED'
+      IF(FACT0.LE.0) WRITE(6,*) 'FACT0.LT.0 PROGRAM STOPPED'
       IF(FACT0.LE.0) WRITE(6,*) 'FINISH CALCULATION'
       IF(FACT0.LE.0) STOP
       SS=2.*SL
@@ -122,6 +149,7 @@
       IF(ICOUNT.GT.1) W1=WC
       
 !      write(80,*), 'W1=',W1,'R4=',R4
+!      WRITE(6,*), 'W1=',W1,'R4=',R4
       W=W1-R4
       C2=SK*ASI*(D-Y)/(.85*FPC)
       FACT1=D-0.333333*Y-.5*C2
@@ -131,6 +159,7 @@
       FACT=((R4/W)*FACT1+FACT5)/FACT4
  !  write(80,*), R4,W,FACT1,FACT5,FACT4
       IF(FACT.LE.0) WRITE(80,*)'FACT.LE.0 PROGRAM STOPPED'
+      IF(FACT.LE.0) WRITE(6,*)'FACT.LE.0 PROGRAM STOPPED'
       IF(FACT.LE.0) WRITE(6,*) 'FINISH CALCULATION'
       IF(FACT.LE.0) STOP
       ALPHA=ATAN(FACT)+ASI
@@ -151,12 +180,13 @@
       EPS=ABS(Y-Y1)
       IF(EPS.EQ.0.) GO TO 3
       IF(ITER.EQ.1000) WRITE(80,*) 'Y=',Y,'Y1=',Y1
+      IF(ITER.EQ.1000) WRITE(6,*) 'Y=',Y,'Y1=',Y1
       IF(ITER.EQ.1000) WRITE(6,*) 'FINISH CALCULATION'
       IF(ITER.EQ.5000) STOP
       IF(EPS.GT..00001) Y=Y1
       ITER=ITER+1
-      WRITE(6,*) 'ITER=',ITER
-      WRITE(6,*) 'EPS=',EPS
+!      WRITE(6,*) 'ITER=',ITER
+!      WRITE(6,*) 'EPS=',EPS
       IF(EPS.GT..0001) GO TO 2
     3 ESTH=Y*ASI/(.5*B+Y)
       PFAIL=.002-ESTH
@@ -179,13 +209,17 @@
       STRNP=(STRNP*PFAIL-STRN*PFAILP)/(PFAIL-PFAILP)
       PFAILP=0.
       WRITE(80,1000) DELTAP,ASIP,YP,R4P,WP,ALPHAP,PP,EPSP,PFAILP,STRNP,EDIA,AREA,SK
+      WRITE(6,1000) DELTAP,ASIP,YP,R4P,WP,ALPHAP,PP,EPSP,PFAILP,STRNP,EDIA,AREA,SK
       WRITE(90,1000) DELTAP,ASIP,YP,R4P,WP,ALPHAP,PP,EPSP,PFAILP,STRNP,EDIA,AB,SK
       WRITE(80,*)'*******  Punch Load-Strain in concrete=.002  *******'
+      WRITE(6,*)'*******  Punch Load-Strain in concrete=.002  *******'
       STOP
   100 CONTINUE
       WRITE(90,1000) DELTA,ASI,Y,R4,W,ALPHA,P,EPS,PFAIL,STRN,AREA,SK
       WRITE(80,1000) DELTA,ASI,Y,R4,W,ALPHA,P,EPS,PFAIL,STRN,AREA,SK
       IF(ICOUNT.GT.1) WRITE(80,*)'*******  Punch Load-Yield Strain in Strap  *******'
+      WRITE(6,1000) DELTA,ASI,Y,R4,W,ALPHA,P,EPS,PFAIL,STRN,AREA,SK
+      IF(ICOUNT.GT.1) WRITE(6,*)'*******  Punch Load-Yield Strain in Strap  *******'
       IF(ICOUNT.GT.1) STOP
  1000 FORMAT(1X,F5.2,1X,F5.2,1X,F5.2,2F8.0,F8.2,1X,F8.0,1X,F8.5,2(1X,F8.6),2(1X,F8.2),1X,F8.5,1X,F8.5)
       DELTAP=DELTA
@@ -198,7 +232,6 @@
       EPSP=EPS
       STRNP=STRN
       PFAILP=PFAIL
-      write(6,*)' STILL COMPUTING AT DELTA=',DELTA,'ITERATION=',ITER
       IF(DELTA.LE.D) GO TO 1
       WRITE(6,*) 'FINISH CALCULATION'
       STOP

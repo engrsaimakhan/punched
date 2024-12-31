@@ -1,31 +1,30 @@
  UNITS METRIC  KN, MM, SECOND
- Clear Span Between Girders=   2100.000    
- Diameter of Equivalent Circle for Load=   541.0000    
- Maximum Compressive Stress of Concrete=   30.00000    
- Strap to Load Spacing=  0.0000000E+00
- Depth Of Slab=   219.5000    
- Beta to Define Rectangular Stress Block=  0.8500000    
- Concrete Constant used for confinement=   10.00000    
- AREA of Load Patch=   150000.0    
- Bar Spacing=   170.0000    
- Equivalent Bar Diameter=   32.00000    
- STRESS Level Increment=   40.00000    
- Modulus of Elascity=   200000.0    
- Yield strain=  2.0000001E-03
+ Clear Span Between Girders=   2100.00000    
+ Diameter of Equivalent Circle for Load=   541.000000    
+ Maximum Compressive Stress of Concrete=   30.0000000    
+ Strap to Load Spacing=   0.00000000    
+ Depth Of Slab=   219.500000    
+ Beta to Define Rectangular Stress Block=  0.850000024    
+ Concrete Constant used for confinement=   10.0000000    
+ AREA of Load Patch=   150000.000    
+ Bar Spacing=   170.000000    
+ Equivalent Bar Diameter=   32.0000000    
+ STRESS Level Increment=   40.0000000    
+ Modulus of Elascity=   200000.000    
+ Yield strain=   2.00000009E-03
  STLVL              EDIA   
  UNITS METRIC  KN, MM, SECOND
-  0.0000000E+00   32.00000    
-   40.00000       31.00000    
-   80.00000       30.00000    
-   120.0000       29.00000    
-   160.0000       28.00000    
-   200.0000       27.00000    
-   240.0000       26.00000    
-   280.0000       25.00000    
-   320.0000       24.00000    
-   360.0000       23.00000    
-  DELTA   ASI     Y      R4       W   ALPHA        P     1   EPS    PFAIL     ST
- RN   AB        SK
+   0.00000000       32.0000000    
+   40.0000000       31.0000000    
+   80.0000000       30.0000000    
+   120.000000       29.0000000    
+   160.000000       28.0000000    
+   200.000000       27.0000000    
+   240.000000       26.0000000    
+   280.000000       25.0000000    
+   320.000000       24.0000000    
+   360.000000       23.0000000    
+  DELTA   ASI     Y      R4       W   ALPHA        P     1   EPS    PFAIL     STRN   AB        SK
   0.63  0.03  9.61     37.     82.   21.64     204.  0.00008 0.001980 0.000119   804.25   901.12
   1.25  0.07 15.01     58.    159.   20.09     365.  0.00004 0.001937 0.000233   754.77   845.68
   1.88  0.10 19.24     74.    245.   18.98     526.  0.00009 0.001881 0.000342   754.77   845.68
