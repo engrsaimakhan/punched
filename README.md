@@ -3,8 +3,14 @@ https://www.cygwin.com/install.html
 OR
 With Visual Studio with Fortran Compiler installed.
 
-After installing cygwin open cygwin terminal, navigate to the code directory and execute the following commands to first input the data and then execute the code
-1. gfortran PunchedIn.f90 -o punchedin.exe  && ./punchedin.exe
-2. gfortran Punched.f90 -o punched.exe  && ./punched.exe
+After installing cygwin open cygwin terminal, navigate to the code directory and execute the following command to input the data, store it in a file and then execute the code
+```
+gfortran PunchedIn.f90 -o punchedin.exe  && ./punchedin.exe && gfortran Punched.f90 -o punched.exe  && ./punched.exe
+```
+
+To execute the code without changing the input, use the following command
+```
+gfortran Punched.f90 -o punched.exe  && ./punched.exe
+```
 
 Running the above will create an executable `punched.exe` in the same directory. 
